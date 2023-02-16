@@ -7,6 +7,7 @@ class LinkedList:
 
     def __init__(self):
         self.head = None
+        self.tail = None
         self.length = 0
 
     def appendL(self,*args):
@@ -103,7 +104,7 @@ class LinkedList:
         else:
             print("No hay nodos:printL")
 
-    def auxAppendL(self, value):
+    def _auxAppendL(self, value):
         if self.head is None:
             self.head = Nodo(value)
             self.tail = self.head
@@ -112,7 +113,7 @@ class LinkedList:
             self.tail = self.tail.next
         self.length+=1
 
-    def auxPositioner(self,position):
+    def _auxPositioner(self,position):
         if self.head is not None and position < self.length:
             nodosIn = self.head
             for i in range(position):
@@ -129,16 +130,13 @@ removeL(position)       => Elimina el nodo de la posicion especificada de la lis
 setL(value,position)    => Modifica el valor del nodo en la posicion especidicada.
 getL(position)          => Retorna el valor del nodo especificado.
 printL()                => Imprime el valor de todos los elementos en la lista.
+_auxAppendL()           => Metodo privadado que añade valores a la lista.
+_auxPositioner()        => Metodo privado que retorna un Nodo en especifico.
 """
 
     
 my_linked_List = LinkedList() 
-my_linked_List.appendL(0,1,2,4,7,34,45)
-my_linked_List.insertL(3,3)
-my_linked_List.setL(5,5)
-my_linked_List.popL()
-my_linked_List.pop_firstL()
-my_linked_List.prependL(255)
+
 
 my_linked_List.removeL(my_linked_List.length)
 """   ^^^^remueve el ultimo nodo^^^^   """
