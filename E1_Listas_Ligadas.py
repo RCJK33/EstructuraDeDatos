@@ -122,7 +122,7 @@ class LinkedList:
 
 """ 
 appendL(*value)         => Añade el valor del parameto o parametros a la lista.
-prepend(value)          => Añade el valor del parametro al principio de la lista.
+prependL(value)         => Añade el valor del parametro al principio de la lista.
 insertL(value,position) => Añade el valor del parametro en la posicion ingresada en el segundo parametro.
 popL()                  => Elimina el ultimo nodo la lista.
 pop_firstL()            => Elimina el primer nodo de la lista.
@@ -130,20 +130,13 @@ removeL(position)       => Elimina el nodo de la posicion especificada de la lis
 setL(value,position)    => Modifica el valor del nodo en la posicion especidicada.
 getL(position)          => Retorna el valor del nodo especificado.
 printL()                => Imprime el valor de todos los elementos en la lista.
-_auxAppendL()           => Metodo privadado que añade valores a la lista.
+_auxAppendL()           => Metodo privado que añade valores a la lista.
 _auxPositioner()        => Metodo privado que retorna un Nodo en especifico.
 """
 
     
 my_linked_List = LinkedList() 
-
-
-my_linked_List.removeL(my_linked_List.length)
-"""   ^^^^remueve el ultimo nodo^^^^   """
-
-
-my_linked_List.printL()
-print()
+my_linked_List.appendL(1)
 print(my_linked_List.length)
 print(my_linked_List.head.value)
 print(my_linked_List.tail.value)
