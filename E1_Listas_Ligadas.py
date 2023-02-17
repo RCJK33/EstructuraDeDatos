@@ -130,8 +130,8 @@ removeL(position)       => Elimina el nodo de la posicion especificada de la lis
 setL(value,position)    => Modifica el valor del nodo en la posicion especidicada.
 getL(position)          => Retorna el valor del nodo especificado.
 printL()                => Imprime el valor de todos los elementos en la lista.
-__auxAppendL()           => Metodo privado que añade valores a la lista.
-__auxPositioner()        => Metodo privado que retorna un Nodo en especifico.
+_auxAppendL()           => Metodo privado que añade valores a la lista.
+_auxPositioner()        => Metodo privado que retorna un Nodo en especifico.
 """
 
     
