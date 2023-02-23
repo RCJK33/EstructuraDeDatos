@@ -11,10 +11,6 @@ class LinkedList:
         self.length = 0
 
     def appendL(self,*args):
-        inicio = 0
-        if self.head is None:
-            self._auxAppendL(args[0])
-            inicio = 1
         for i in range(inicio,len(args)):
             self._auxAppendL(args[i])
 
