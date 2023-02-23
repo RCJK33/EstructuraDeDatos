@@ -1,4 +1,6 @@
-a=str(input("Ingresa una palabra: ")).replace(" ","").upper()
-b=str(input("Ingresa otra palabra: ")).replace(" ","").upper()
-if len(a) == len(b) and set(a) == set(b):
-    print("Son anagramas")
+a = sorted(str(input("Palabra 1: ")).replace(" ","").upper())
+b = sorted(str(input("Palabra 2: ")).replace(" ","").upper())
+if a == b:
+    print("Son Acronimos")
+else:
+    print("No son Acronimos")
