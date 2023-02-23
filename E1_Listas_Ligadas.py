@@ -134,7 +134,4 @@ _auxAppendL()           => Metodo privado que añade valores a la lista.
 _auxPositioner()        => Metodo privado que retorna un Nodo en especifico.
 """
 
-    
 my_linked_List = LinkedList() 
-
-
