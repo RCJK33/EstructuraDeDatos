@@ -4,14 +4,13 @@ class Nodo:
         self.next = None
 
 class LinkedList:
-
     def __init__(self):
         self.head = None
         self.tail = None
         self.length = 0
 
     def appendL(self,*args):
-        for i in range(inicio,len(args)):
+        for i in range(len(args)):
             self._auxAppendL(args[i])
 
     def prependL(self,value):
@@ -23,22 +22,6 @@ class LinkedList:
             nuevo_nodo.next = self.head
             self.head = nuevo_nodo
             self.length+=1
-
-    def insertL(self,value,position):
-        if self.length+1 == position:
-            self.appendL(value)
-            return
-        if position == 0:
-            self.prependL(value)
-            return
-        try:
-            temp = self._auxPositioner(position-1)
-            nuevoNodo = temp.next
-            temp.next = Nodo(value)
-            temp.next.next = nuevoNodo
-            self.length+= 1
-        except Exception as err:
-            print(f"No existe el nodo:InsertL => {type(err)}")
 
     def popL(self):
         try:
@@ -65,6 +48,22 @@ class LinkedList:
         except Exception as err:
             print(f"No hay nodos:pop_firstL => {type(err)}")
 
+    def insertL(self,value,position):
+        if self.length+1 == position:
+            self.appendL(value)
+            return
+        if position == 0:
+            self.prependL(value)
+            return
+        try:
+            temp = self._auxPositioner(position-1)
+            nuevoNodo = temp.next
+            temp.next = Nodo(value)
+            temp.next.next = nuevoNodo
+            self.length+= 1
+        except Exception as err:
+            print(f"No existe el nodo:InsertL => {type(err)}")
+             
     def removeL(self,position):
         if self.length-1 == position:
             self.popL()
@@ -72,8 +71,8 @@ class LinkedList:
         if position == 0:
             self.pop_firstL()
             return
-        temp = self._auxPositioner(position-1)
         try:
+            temp = self._auxPositioner(position-1)
             replace = temp.next.next
             temp.next = None 
             temp.next = replace
@@ -93,10 +92,9 @@ class LinkedList:
     def printL(self):
         if self.head is not None:
             nodosIn = self.head
-            while nodosIn.next:
+            while nodosIn:
                 print(nodosIn.value)
                 nodosIn = nodosIn.next
-            print(nodosIn.value)  
         else:
             print("No hay nodos:printL")
 
@@ -130,4 +128,4 @@ _auxAppendL()           => Metodo privado que añade valores a la lista.
 _auxPositioner()        => Metodo privado que retorna un Nodo en especifico.
 """
 
-my_linked_List = LinkedList() 
+my_linked_List = LinkedList()
