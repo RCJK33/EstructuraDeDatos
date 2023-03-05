@@ -41,7 +41,7 @@ class LinkedList:
         self.length+=1
 
 """ 
-simpleAppendL(*value)   => Añade el valor del parameto o parametros a la lista de forma ordenada con funcion sorted() (funcion ya hecha).
+sortedAppendL(*value)   => Añade el valor del parameto o parametros a la lista de forma ordenada con funcion sorted() (funcion ya hecha).
 isAcronymL(LinkedList)  => Recibe una instancia de la misma clase y retorna un valor voleano si ambas listas son iguales.
 _auxAppendL()           => Metodo privado que añade valores a la lista.
 """
