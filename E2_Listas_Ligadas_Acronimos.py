@@ -20,7 +20,6 @@ class LinkedList:
             return False
         if self.length != otherself.length:
             return False
-        
         nodosIn = self.head
         nodosInOther = otherself.head
         for i in range(self.length):
