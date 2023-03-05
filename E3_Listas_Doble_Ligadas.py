@@ -2,7 +2,7 @@ class Nodo:
     def __init__(self, value):
         self.value = value
         self.next = None
-        self.prer = None
+        self.prep = None
 
 class LinkedList:
     def __init__(self):
@@ -18,17 +18,15 @@ class LinkedList:
         if self.head is None:
             self.appendL(value)
             return
-        else:
-            nuevo_nodo = Nodo(value)
-            self.head.prer = nuevo_nodo
-            nuevo_nodo.next = self.head
-            self.head = nuevo_nodo
-            self.length+=1
+        self.head.prep = Nodo(value)
+        self.head.prep.next = self.head
+        self.head = self.head.prep
+        self.length+=1
 
     def popL(self):
         try:
-            self.tail = self.tail.prer
-            self.tail.next.prer = None
+            self.tail = self.tail.prep
+            self.tail.next.prep = None
             self.tail.next = None
             self.length+= -1
         except:
@@ -43,7 +41,7 @@ class LinkedList:
             else:
                 temp = self.head.next
                 self.head = None
-                temp.prer = None
+                temp.prep = None
                 self.head = temp
             self.length+= -1 
         except Exception as err:
@@ -58,11 +56,11 @@ class LinkedList:
             return
         try:
             temp = self._auxPositioner(position-1)
-            nuevoNodo = temp.next
+            nodoBackup = temp.next
             temp.next = Nodo(value)
-            temp.next.prer = temp
-            temp.next.next = nuevoNodo
-            temp.next.next.prer = temp.next
+            temp.next.prep = temp
+            temp.next.next = nodoBackup
+            temp.next.next.prep = temp.next
             self.length+= 1
         except Exception as err:
             print(f"No existe el nodo:InsertL => {type(err)}")
@@ -74,11 +72,11 @@ class LinkedList:
         if position == 0:
             self.pop_firstL()
             return
-        temp = self._auxPositioner(position-1)
         try:
+            temp = self._auxPositioner(position-1)
             replace = temp.next.next
             temp.next = None
-            replace.prer = temp 
+            replace.prep = temp 
             temp.next = replace
             self.length+= -1
         except Exception as err:
@@ -96,20 +94,18 @@ class LinkedList:
     def printL(self):
         if self.head is not None:
             nodosIn = self.head
-            while nodosIn.next:
+            while nodosIn:
                 print(nodosIn.value)
-                nodosIn = nodosIn.next
-            print(nodosIn.value)  
+                nodosIn = nodosIn.next 
         else:
             print("No hay nodos:printL")
 
     def printTailBackL(self):
         if self.tail is not None:
             nodosIn = self.tail
-            while nodosIn.prer:
+            while nodosIn:
                 print(nodosIn.value)
-                nodosIn = nodosIn.prer
-            print(nodosIn.value)  
+                nodosIn = nodosIn.prep
         else:
             print("No hay nodos:printL")
 
@@ -119,7 +115,7 @@ class LinkedList:
             self.tail = self.head
         else:
             self.tail.next = Nodo(value)
-            self.tail.next.prer = self.tail
+            self.tail.next.prep = self.tail
             self.tail = self.tail.next
         self.length+=1
 
@@ -146,9 +142,3 @@ _auxPositioner()        => Metodo privado que retorna un Nodo en especifico.
 """
 
 my_linked_List = LinkedList()
-
-my_linked_List.appendL(1,2,3,4,5,6,7)
-my_linked_List.insertL(3,3)
-my_linked_List.removeL(3)
-my_linked_List.printL()
-my_linked_List.printTailBackL()
