@@ -3,12 +3,12 @@ class Nodo:
         self.value = value
         self.next = None
     
-class LinkeList:
+class Stack:
     def __init__(self) -> None:
         self.top = None
         self.height = 0
 
-    def push(self,value):
+    def pushL(self,value):
         if not self.top:
             self.top = Nodo(value)
         else:
@@ -31,15 +31,12 @@ class LinkeList:
         nodo = self.top
         while nodo:
             print(nodo.value)
-            nodo = nodo.next        
+            nodo = nodo.next
 
-listas = LinkeList()
+""" 
+pushL(value)            => Guarda el valor del parametro en un nodo nuevo del stack.
+popL()                  => Elimina el ultimo nodo guardado en el stack.
+printStack()            => Imprime el valor de los nodos guardados en el Stack.
+"""        
 
-listas.push(3)
-listas.push(4)
-listas.push(6)
-listas.push(7)
-
-listas.popL()
-
-listas.printStack()
+listas = Stack()
