@@ -2,12 +2,15 @@ import math
 
 
 class HashTable:
-    def __init__(self,length: int = 101,magic_number: int = 2) -> None:
+    def __init__(self, length: int = 101, magic_number: int = 2, rehash_Limit: int = 6) -> None:
         # Se recomienda utilizar numeros primos para el tamaño de la lista
         # Se recomienda dejar el numero magico en 2 o 1 (puedes probar a ver cual da menos coluciones)
         self.__hashList = list(None for i in range(length))
         self.__length = length
+
         self.__magicNumber = magic_number
+        self.__rehashLimit = rehash_Limit
+
         self.length = 0
 
     # Esta version del metodo no hacer Rehash
@@ -28,30 +31,33 @@ class HashTable:
 
     # Metodo basado en el metodo de Direccionamiento abierto o Hasing Cerrado (Rehash)
     # Mas info en https://ccia.ugr.es/~jfv/ed1/tedi/cdrom/docs/tablash.html
-    def __hash__(self,key: str) -> int:
-        def rehash(keyLength: int,intents: int = 1):
+    def __hash__(self, key: str) -> int:
+        def rehash(keyLength: int, intents: int = 1):
             hash = 0
             for it in range(keyLength):
-                # Formula Hash [Funcion lineal con los parametros 
+                # Formula Hash [Funcion lineal con los parametros
                 # i++ (ascii de Char) + (no. de intentos + ascii char)]
                 # Funcion que depende del numero de iteracion lo que significa que si hay otra letra igual, la funcion no sera igual.
 
-                hash += it * (ord(key[it])) + intents + ord(key[(keyLength-1)-it])
+                hash += it * (ord(key[it])) + intents + \
+                    ord(key[(keyLength-1)-it])
             return int(hash)
-        
-        i = self.__magicNumber
+
+        ints = self.__magicNumber
         while True:
-            index = rehash(len(key),i) % self.__length
+            index = rehash(len(key), ints) % self.__length
 
             if self.__isAvailable(index):
-                print("{:<15}{:<10}{:<15}{:<2}".format(key,index,str(self.__hashList[index]),i))
+                print("{:<15}{:<10}{:<15}{:<2}".format(key, index, str(
+                    self.__hashList[index]), ints+1-self.__magicNumber))
                 return index
-            elif i < 6:
-                i += 1
+            elif ints <= self.__rehashLimit:
+                ints += 1
             else:
-                print(f"Numero de intentos de rehash superado -> {key}.")
+                print(
+                    f"Hash no disponible  -> {key} | [{self.__rehashLimit} intentos].")
                 break
-    
+
     def __isAvailable(self, index: int):
         try:
             if self.__hashList[index] is None:
@@ -59,7 +65,7 @@ class HashTable:
         except:
             return False
         return False
-    
+
     def add(self, key: str):
         index = self.__hash__(key)
         if self.__isAvailable(index):
@@ -70,7 +76,7 @@ class HashTable:
 """ 
 obj_name = HashTable(value)     => La instanciacion de la clase HashTable, indica en el parametro el tamaño de la tabla.
 add("Cadena de texto")          => Metodo que añade un nuevo valor a la tabla hash.
-__isAvailable(index)            => Metodo privado que se asegura de saber si un modulo ya esta en uso o no. En caso de ser asi, retorna True, de lo contrario False
+__isAvailable(index)            => Metodo privado que se asegura de saber si habra una colisión. En caso de ser asi, retorna False, de lo contrario True
 __hash__("Cadena de texto")     => Metodo privado que calcula el indice en el que se almacenara un elemento
 """
 
@@ -86,7 +92,7 @@ hash_list.add("Gael")
 hash_list.add("Luis")
 hash_list.add("Villegas")
 hash_list.add("Carlos")
-hash_list.add("Elisa") 
+hash_list.add("Elisa")
 hash_list.add("Hoper")
 hash_list.add("Karina")
 
@@ -101,4 +107,3 @@ hash_list.add("imeoN")
 hash_list.add("adnanre")
 hash_list.add("oiciruaM")
 hash_list.add("oiraM")
-
